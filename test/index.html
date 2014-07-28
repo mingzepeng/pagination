@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>pagination test</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+	<style type="text/css">
+		div{
+			margin-bottom: 30px;
+		}
+		a,span{
+			padding: 5px;
+			border: 1px solid #4183c4;
+		}
+		a{
+			text-decoration: none;
+			color: #4183c4;
+		}
+		span{
+			color: #72B939;
+		}
+	</style>
+
+
+	</head>
+	<body>
+		<div id="test1"></div>
+		<div id="test2"></div>
+		<div id="test3"></div>
+
+	</body>
+</html>
+
+<script type="text/javascript" src="../pagination.js"></script>
+<script>
+	var test = function(o) {
+		var html = '';
+		for (var i = 0; i < o.pages.length; i++) {
+			html += o.pages[i] === o.pageNumber || o.pages[i] === o.config['omission']? '<span>'+o.pages[i]+'</span>' : '<a href="#">'+o.pages[i]+'</a>';
+		};
+		return html;
+	}
+
+	var totalRow = 800;
+	var pageSize = 20;
+	var pageNumber1 = 3;
+	var pageNumber2 = 23;
+	var pageNumber3 = 39;
+	var page = new pagination(totalRow,pageSize);
+	var pages1 = page.generate(pageNumber1);
+	var pages2 = page.generate(pageNumber2);
+	var pages3 = page.generate(pageNumber3);
+	document.getElementById('test1').innerHTML = test(pages1);
+	document.getElementById('test2').innerHTML = test(pages2);
+	document.getElementById('test3').innerHTML = test(pages3);
+</script>
