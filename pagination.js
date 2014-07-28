@@ -5,12 +5,12 @@
 	} else if (typeof define === 'function' && define.amd) { // AMD / RequireJS
 		define(factory);
 	} else {
-		root.pagination = factory.call(root);
+		root.Pagination = factory.call(root);
 	}
 })(this, function() {
 	'use strict';
 
-	function pagination(totalRow,pageSize) {
+	function Pagination(totalRow,pageSize) {
 		this.config = {
 			offset : 2,
 			omission : '...',
@@ -23,11 +23,11 @@
 		this.pageNumber = 1;									 //当前页
 	}
 
-	pagination.prototype.generate = function(pageNumber){
+	Pagination.prototype.generate = function(pageNumber){
 
 		pageNumber = !isNaN(pageNumber) ? parseInt(pageNumber) : this.pageNumber ;
 		if (pageNumber > this.totalPage) 
-			throw "pageNumber is higher than the totalPage";
+			throw new Error("pageNumber is higher than the totalPage");
 
 		var o = this.config.offset,pages = [],i=0;
 		if(pageNumber > 1) pages.push(this.config.pre);
@@ -57,7 +57,7 @@
 		};
 	};
 
-	pagination.prototype.setConfig = function(key,value){
+	Pagination.prototype.setConfig = function(key,value){
 		if(Object(key) === key){
 			for(var i in key) this.config[i] = key[i];
 		}else if(key != undefined && value != undefined){
@@ -65,16 +65,16 @@
 		}
 	};
 
-	pagination.prototype.getConfig = function(key){
+	Pagination.prototype.getConfig = function(key){
 		return key != undefined ? this.config[key+''] : this.config;
 	};
 
-	pagination.generate = function(totalPage,pageNumber,config){
-		var page = new pagination(0,10,config);
+	Pagination.generate = function(totalPage,pageNumber,config){
+		var page = new Pagination(0,10,config);
 		page.totalPage = totalPage;
 		page.setConfig(config);
 		return page.generate(pageNumber);
 	};
 
-	return pagination; 
+	return Pagination; 
 });

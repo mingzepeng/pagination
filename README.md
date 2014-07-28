@@ -1,4 +1,7 @@
 Pagination
 ==========
 
-a  pagination for web page
+a  pagination for webapp
+
+##usage
+see test/index.html
