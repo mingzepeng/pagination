@@ -5,40 +5,90 @@
 		<title>pagination test</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
-	<style type="text/css">
-		div{
-			margin-bottom: 30px;
+		<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+		<style type="text/css">
+		.test{
+			width: 960px;
+			margin: 0 auto;
 		}
-		a,span{
-			padding: 5px;
-			border: 1px solid #4183c4;
-		}
-		a{
-			text-decoration: none;
-			color: #4183c4;
-		}
-		span{
-			color: #72B939;
-		}
-	</style>
+			.test div{
+				margin-bottom: 30px;
+			}
+			.test a,.test span{
+				padding: 5px;
+				border: 1px solid #4183c4;
+			}
+			.test a{
+				text-decoration: none;
+				color: #4183c4;
+			}
+			.test span{
+				color: #72B939;
+			}
+		</style>
 
 
 	</head>
 	<body>
+	<div class="test">
 		<div id="test1"></div>
 		<div id="test2"></div>
-		<div id="test3"></div>
+		<div id="test3"></div>	
 
+	</div>
+
+<h1>使用方式</h1>
+		<pre>
+		<code>
+var test = function(o) {
+	var html = '';
+	for (var i = 0; i < o.pages.length; i++) {
+		var item = o.pages[i];
+		if (item === o.pageNumber || item === o.config['omission']) {
+			html += '&lt;span&gt;'+o.pages[i]+'&lt;/span&gt;';
+		} else if( item === o.config['pre']){
+			html += ' &lt;a href="#'+(o.pageNumber-1)+'"&gt;'+item+'&lt;/a&gt;';
+		} else if( item === o.config['next']){
+			html += '&lt;a href="#'+(o.pageNumber+1)+'"&gt;'+item+'&lt;/a&gt;';
+		} else {
+			html += '&lt;a href="#'+item+'"&gt;'+item+'&lt;/a&gt;';
+		}
+	};
+	html += '';
+	return html;
+}
+
+var totalRow = 800;
+var pageSize = 20;
+
+var pageNumber = 3;
+var page = new Pagination(totalRow,pageSize);
+var pages = page.generate(pageNumber);
+
+document.getElementById('test1').innerHTML = test(pages);
+		</code>
+		</pre>
 	</body>
-</html>
 
+</html>
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
 <script type="text/javascript" src="../pagination.js"></script>
 <script>
 	var test = function(o) {
 		var html = '';
 		for (var i = 0; i < o.pages.length; i++) {
-			html += o.pages[i] === o.pageNumber || o.pages[i] === o.config['omission']? '<span>'+o.pages[i]+'</span>' : '<a href="#">'+o.pages[i]+'</a>';
+			var item = o.pages[i];
+			if (item === o.pageNumber || item === o.config['omission']) {
+				html += '<span>'+o.pages[i]+'</span>';
+			} else if( item === o.config['pre']){
+				html += '<a href="#'+(o.pageNumber-1)+'">'+item+'</a>';
+			} else if( item === o.config['next']){
+				html += '<a href="#'+(o.pageNumber+1)+'">'+item+'</a>';
+			} else {
+				html += '<a href="#'+item+'">'+item+'</a>';
+			}
 		};
+		html += '';
 		return html;
 	}
 
@@ -47,7 +97,7 @@
 	var pageNumber1 = 3;
 	var pageNumber2 = 23;
 	var pageNumber3 = 39;
-	var page = new pagination(totalRow,pageSize);
+	var page = new Pagination(totalRow,pageSize);
 	var pages1 = page.generate(pageNumber1);
 	var pages2 = page.generate(pageNumber2);
 	var pages3 = page.generate(pageNumber3);
@@ -55,3 +105,4 @@
 	document.getElementById('test2').innerHTML = test(pages2);
 	document.getElementById('test3').innerHTML = test(pages3);
 </script>
+<script >hljs.initHighlightingOnLoad();</script>  
