@@ -19,7 +19,7 @@
 		};
 		this.totalRow = !isNaN(totalRow) ? parseInt(totalRow) : 0;   //总的行数
 		this.pageSize = !isNaN(pageSize) ? parseInt(pageSize) : 10;  //一页数据的条数
-		this.totalPage = Math.ceil(totalRow/pageSize);         //计算出总的页数
+		this.totalPage = Math.ceil(this.totalRow/this.pageSize);         //计算出总的页数
 		this.setConfig(config);
 		this.pageNumber = 1;									 //当前页
 	}
