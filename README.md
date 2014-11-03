@@ -1,7 +1,7 @@
 Pagination
 ==========
 
-a  pagination for webapp
+a  pagination for node and webapp
 
 ##usage
-see test/index.html
+see example/index.html
