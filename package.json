@@ -1,0 +1,31 @@
+{
+  "name": "pagination",
+  "version": "0.1.0",
+  "description": "a pagination for node and web",
+  "main": "pagination.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mingzepeng/pagination.git"
+  },
+  "keywords": [
+    "pagination"
+  ],
+  "author": "mingzepeng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mingzepeng/pagination/issues"
+  },
+  "homepage": "https://github.com/mingzepeng/pagination",
+  "devDependencies": {
+    "chai": "^1.9.2",
+    "coverjs": "0.0.14",
+    "mocha": "^2.0.1"
+  }
+}

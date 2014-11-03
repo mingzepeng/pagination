@@ -63,7 +63,7 @@ var pageSize = 20;
 
 var pageNumber = 3;
 var page = new Pagination(totalRow,pageSize);
-var pages = page.generate(pageNumber);
+var pages = page.get(pageNumber);
 
 document.getElementById('test1').innerHTML = test(pages);
 		</code>
@@ -74,15 +74,15 @@ document.getElementById('test1').innerHTML = test(pages);
 <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>  
 <script type="text/javascript" src="../pagination.js"></script>
 <script>
-	var test = function(o) {
+	var html = function(o) {
 		var html = '';
 		for (var i = 0; i < o.pages.length; i++) {
 			var item = o.pages[i];
-			if (item === o.pageNumber || item === o.config['omission']) {
+			if (item === o.pageNumber || item === o['omission']) {
 				html += '<span>'+o.pages[i]+'</span>';
-			} else if( item === o.config['pre']){
+			} else if( item === o['pre']){
 				html += '<a href="#'+(o.pageNumber-1)+'">'+item+'</a>';
-			} else if( item === o.config['next']){
+			} else if( item === o['next']){
 				html += '<a href="#'+(o.pageNumber+1)+'">'+item+'</a>';
 			} else {
 				html += '<a href="#'+item+'">'+item+'</a>';
@@ -98,11 +98,11 @@ document.getElementById('test1').innerHTML = test(pages);
 	var pageNumber2 = 23;
 	var pageNumber3 = 39;
 	var page = new Pagination(totalRow,pageSize);
-	var pages1 = page.generate(pageNumber1);
-	var pages2 = page.generate(pageNumber2);
-	var pages3 = page.generate(pageNumber3);
-	document.getElementById('test1').innerHTML = test(pages1);
-	document.getElementById('test2').innerHTML = test(pages2);
-	document.getElementById('test3').innerHTML = test(pages3);
+	var pages1 = page.get(pageNumber1);
+	var pages2 = page.get(pageNumber2);
+	var pages3 = page.get(pageNumber3);
+	document.getElementById('test1').innerHTML = html(pages1);
+	document.getElementById('test2').innerHTML = html(pages2);
+	document.getElementById('test3').innerHTML = html(pages3);
 </script>
 <script >hljs.initHighlightingOnLoad();</script>  
